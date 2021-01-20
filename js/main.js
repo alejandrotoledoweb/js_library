@@ -4,6 +4,8 @@ const author = document.querySelector('#author');
 const pages = document.querySelector('#pages');
 const read = document.querySelector('#readStatus');
 const row = document.querySelector('.row');
+const modal = document.querySelector('.modal1');
+const closeButton = document.querySelector('.close-button');
 
 function saveLibrary() {
   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
@@ -45,22 +47,18 @@ function checkStatus(book, btn) {
   }
 }
 
-
-var modal = document.querySelector(".modal1");
-var closeButton = document.querySelector(".close-button");
-
 function toggleModal() {
-    modal.classList.toggle("show-modal");
+  modal.classList.toggle('show-modal');
 }
 
 function windowOnClick(event) {
-    if (event.target === modal) {
-        toggleModal();
-    }
+  if (event.target === modal) {
+    toggleModal();
+  }
 }
 
-closeButton.addEventListener("click", toggleModal);
-window.addEventListener("click", windowOnClick);
+closeButton.addEventListener('click', toggleModal);
+window.addEventListener('click', windowOnClick);
 
 
 Card.prototype.createCard = (book) => {
@@ -95,7 +93,7 @@ Card.prototype.createCard = (book) => {
   deleteBtn.className = 'btn btn-danger ml-2 pl-2 btn-delete';
   deleteBtn.textContent = 'Delete Book';
   deleteBtn.addEventListener('click', deleteBook);
-  deleteBtn.addEventListener("click", toggleModal);
+  deleteBtn.addEventListener('click', toggleModal);
 
   cardBody.appendChild(cardTitle);
   cardBody.appendChild(subTitle);
