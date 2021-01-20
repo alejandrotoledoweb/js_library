@@ -45,6 +45,24 @@ function checkStatus(book, btn) {
   }
 }
 
+
+var modal = document.querySelector(".modal1");
+var closeButton = document.querySelector(".close-button");
+
+function toggleModal() {
+    modal.classList.toggle("show-modal");
+}
+
+function windowOnClick(event) {
+    if (event.target === modal) {
+        toggleModal();
+    }
+}
+
+closeButton.addEventListener("click", toggleModal);
+window.addEventListener("click", windowOnClick);
+
+
 Card.prototype.createCard = (book) => {
   const column = document.createElement('section');
   column.className = 'mb-3 col-3';
@@ -74,9 +92,10 @@ Card.prototype.createCard = (book) => {
 
   const deleteBtn = document.createElement('button');
   deleteBtn.setAttribute('type', 'button');
-  deleteBtn.className = 'btn btn-danger ml-2 pl-2';
+  deleteBtn.className = 'btn btn-danger ml-2 pl-2 btn-delete';
   deleteBtn.textContent = 'Delete Book';
   deleteBtn.addEventListener('click', deleteBook);
+  deleteBtn.addEventListener("click", toggleModal);
 
   cardBody.appendChild(cardTitle);
   cardBody.appendChild(subTitle);
