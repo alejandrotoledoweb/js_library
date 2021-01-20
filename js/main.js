@@ -66,11 +66,7 @@ Card.prototype.createCard = (book) => {
   const bookRead = document.createElement('button');
   bookRead.className = 'btn btn-secondary';
   bookRead.addEventListener('click', statusChange);
-  if (book.read) {
-    bookRead.textContent = 'Read';
-  } else {
-    bookRead.textContent = 'Not Read';
-  }
+  
 
   const deleteBtn = document.createElement('button');
   deleteBtn.setAttribute('type', 'button');
