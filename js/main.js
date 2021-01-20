@@ -1,13 +1,12 @@
 let myLibrary = [];
-const title = document.querySelector("#title");
-const author = document.querySelector("#author");
-const pages = document.querySelector("#pages");
-const read = document.querySelector("#readStatus");
-const row = document.querySelector(".row");
-const container = document.querySelector(".container");
+const title = document.querySelector('#title');
+const author = document.querySelector('#author');
+const pages = document.querySelector('#pages');
+const read = document.querySelector('#readStatus');
+const row = document.querySelector('.row');
 
 function saveLibrary() {
-  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+  localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
 }
 
 // the same attributes from the form in the html file
@@ -27,55 +26,58 @@ function deleteBook(mybook) {
   const bookIndex = myLibrary.indexOf(mybook.target);
   myLibrary.splice(bookIndex, 1);
   saveLibrary();
-  // ConfirmDelete();
   mybook.target.offsetParent.parentElement.remove();
 }
 
+function ConfirmDelete() {
+  alert('Record will be deleted!');
+}
+
 function statusChange(status) {
-  if (status.target.textContent === "Read") {
-    status.target.textContent = "Not Read";
+  if (status.target.textContent === 'Read') {
+    status.target.textContent = 'Not Read';
   } else {
-    status.target.textContent = "Read";
+    status.target.textContent = 'Read';
   }
 }
 
 Card.prototype.createCard = (book) => {
-  const column = document.createElement("section");
-  column.className = "mb-3 col-3";
+  const column = document.createElement('section');
+  column.className = 'mb-3 col-3';
 
-  const card = document.createElement("div");
-  card.className = "shadow card";
+  const card = document.createElement('div');
+  card.className = 'shadow card';
 
-  const cardBody = document.createElement("div");
-  cardBody.classList.add("card-body");
+  const cardBody = document.createElement('div');
+  cardBody.classList.add('card-body');
 
-  const cardTitle = document.createElement("h5");
-  cardTitle.classList.add("card-title");
+  const cardTitle = document.createElement('h5');
+  cardTitle.classList.add('card-title');
   cardTitle.textContent = book.title;
 
-  const subTitle = document.createElement("h6");
-  subTitle.className = "card-subtitle";
+  const subTitle = document.createElement('h6');
+  subTitle.className = 'card-subtitle';
   subTitle.textContent = book.author;
 
-  const cardPages = document.createElement("p");
-  cardPages.classList.add("card-text");
+  const cardPages = document.createElement('p');
+  cardPages.classList.add('card-text');
   cardPages.textContent = `${book.pages} pages`;
 
-  const bookRead = document.createElement("button");
-  bookRead.className = "btn btn-secondary";
-  bookRead.addEventListener("click", statusChange);
+  const bookRead = document.createElement('button');
+  bookRead.className = 'btn btn-secondary';
+  bookRead.addEventListener('click', statusChange);
   if (book.read) {
-    bookRead.textContent = "Read";
+    bookRead.textContent = 'Read';
   } else {
-    bookRead.textContent = "Not Read";
+    bookRead.textContent = 'Not Read';
   }
 
-  const deleteBtn = document.createElement("button");
-  deleteBtn.setAttribute("type", "button");
-  deleteBtn.className = "btn btn-danger";
-  deleteBtn.textContent = "Delete Book";
-  deleteBtn.addEventListener("click", ConfirmDelete);
-  deleteBtn.addEventListener("click", deleteBook);
+  const deleteBtn = document.createElement('button');
+  deleteBtn.setAttribute('type', 'button');
+  deleteBtn.className = 'btn btn-danger';
+  deleteBtn.textContent = 'Delete Book';
+  deleteBtn.addEventListener('click', ConfirmDelete);
+  deleteBtn.addEventListener('click', deleteBook);
 
   cardBody.appendChild(cardTitle);
   cardBody.appendChild(subTitle);
@@ -88,7 +90,7 @@ Card.prototype.createCard = (book) => {
 };
 
 function resetList() {
-  row.innerHTML = "";
+  row.innerHTML = '';
 }
 
 function newBook(bookCard) {
@@ -99,16 +101,16 @@ function newBook(bookCard) {
 }
 
 function restoreLocal() {
-  myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
+  myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
   if (myLibrary === null) myLibrary = [];
   const bookCard = new Card();
   newBook(bookCard);
 }
 
 function cleanInputs() {
-  title.value = "";
-  author.value = "";
-  pages.value = "";
+  title.value = '';
+  author.value = '';
+  pages.value = '';
   read.checked = false;
 }
 
@@ -121,14 +123,7 @@ function addBookToLibrary() {
   cleanInputs();
 }
 
-function ConfirmDelete() {
-  var x = confirm("Are you sure you want to delete?");
-  if (x) return true;
-  else x;
-  return false;
-}
-
-const btn = document.querySelector("#createBtn");
-btn.addEventListener("click", addBookToLibrary);
+const btn = document.querySelector('#createBtn');
+btn.addEventListener('click', addBookToLibrary);
 
 restoreLocal();
