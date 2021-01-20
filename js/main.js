@@ -29,11 +29,23 @@ function deleteBook(mybook) {
   mybook.target.offsetParent.parentElement.remove();
 }
 
+function ConfirmDelete() {
+  alert('Record will be deleted!');
+}
+
 function statusChange(status) {
   if (status.target.textContent === 'Read') {
     status.target.textContent = 'Not Read';
   } else {
     status.target.textContent = 'Read';
+  }
+}
+
+function checkStatus(book,status) {
+  if (book.read) {
+    status.textContent = 'Read';
+  } else {
+    status.textContent = 'Not Read';
   }
 }
 
@@ -62,12 +74,13 @@ Card.prototype.createCard = (book) => {
   const bookRead = document.createElement('button');
   bookRead.className = 'btn btn-secondary';
   bookRead.addEventListener('click', statusChange);
-
+  checkStatus(book,bookRead);
 
   const deleteBtn = document.createElement('button');
   deleteBtn.setAttribute('type', 'button');
   deleteBtn.className = 'btn btn-danger';
   deleteBtn.textContent = 'Delete Book';
+  deleteBtn.addEventListener('click', ConfirmDelete);
   deleteBtn.addEventListener('click', deleteBook);
 
   cardBody.appendChild(cardTitle);

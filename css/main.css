@@ -1,3 +1,47 @@
 body {
   background-color: aliceblue;
 }
+
+.poker {
+  /*this is the style for the button*/
+  display: block;
+  margin: 20px auto;
+  background: crimson;
+  color: white;
+  border: 0;
+  padding: 6px 10px;
+}
+.popup-wrapper {
+  background: rgba(0, 0, 0, 0.5); /*the last value on the parenthesis the 0.5 is the one that will control  the screen opacity */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+.popup {
+  /*this is the sytle for the text*/
+  font-family: arial;
+  text-align: center;
+  width: 100%;
+  max-width: 300px;
+  margin: 10% auto;
+  background: white;
+  position: relative;
+  padding: 25px;
+}
+.popup a {
+  /*this is the style for the button pop up*/
+  background: crimson;
+  color: white;
+  text-decoration: none;
+  padding: 6px 10px;
+}
+.popup-close {
+  /*this is the style for the x to close the pop up*/
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  cursor: pointer;
+}
