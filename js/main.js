@@ -1,15 +1,8 @@
-let myLibrary = [];
-const title = document.querySelector('#title');
-const author = document.querySelector('#author');
-const pages = document.querySelector('#pages');
-const read = document.querySelector('#readStatus');
-const row = document.querySelector('.row');
-const modal = document.querySelector('.modal1');
-const closeButton = document.querySelector('.close-button');
+import {
+  deleteBook, statusChange, checkStatus, toggleModal, Card,
+} from './functions';
 
-function Card(book) {
-  this.book = book;
-}
+const row = document.querySelector('.row');
 
 Card.prototype.createCard = (book) => {
   const column = document.createElement('section');
@@ -42,7 +35,7 @@ Card.prototype.createCard = (book) => {
   deleteBtn.setAttribute('type', 'button');
   deleteBtn.className = 'btn btn-danger ml-2 pl-2 btn-delete';
   deleteBtn.textContent = 'Delete Book';
-  deleteBtn.addEventListener('click', deleteBook);
+  deleteBtn.addEventListener('click', deleteBook());
   deleteBtn.addEventListener('click', toggleModal);
 
   cardBody.appendChild(cardTitle);
