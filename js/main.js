@@ -29,10 +29,6 @@ function deleteBook(mybook) {
   mybook.target.offsetParent.parentElement.remove();
 }
 
-function ConfirmDelete() {
-  alert('Record will be deleted!');
-}
-
 function statusChange(status) {
   if (status.target.textContent === 'Read') {
     status.target.textContent = 'Not Read';
@@ -72,7 +68,6 @@ Card.prototype.createCard = (book) => {
   deleteBtn.setAttribute('type', 'button');
   deleteBtn.className = 'btn btn-danger';
   deleteBtn.textContent = 'Delete Book';
-  deleteBtn.addEventListener('click', ConfirmDelete);
   deleteBtn.addEventListener('click', deleteBook);
 
   cardBody.appendChild(cardTitle);
