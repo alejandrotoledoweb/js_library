@@ -2,7 +2,7 @@ import {
   myLibrary, saveLibrary, Book, Card, toggleModal,
   windowOnClick, statusChange, checkStatus, title,
   author, pages, read, row, closeButton, deleteBook,
-} from './functions.js';
+} from './library';
 
 Card.prototype.createCard = (book) => {
   const column = document.createElement('section');
