@@ -1,45 +1,10 @@
-let myLibrary = [];
-const title = document.querySelector('#title');
-const author = document.querySelector('#author');
-const pages = document.querySelector('#pages');
-const read = document.querySelector('#readStatus');
-const row = document.querySelector('.row');
-const container = document.querySelector('.container');
-
-function saveLibrary() {
-  localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
-}
-
-// the same attributes from the form in the html file
-
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-}
-
-function Card(book) {
-  this.book = book;
-}
-
-function deleteBook(mybook) {
-  const bookIndex = myLibrary.indexOf(mybook.target);
-  myLibrary.splice(bookIndex, 1);
-  saveLibrary();
-  mybook.target.offsetParent.parentElement.remove();
-}
-
-function statusChange(status) {
-  if (status.target.textContent === 'Read') {
-    status.target.textContent = 'Not Read';
-  } else {
-    status.target.textContent = 'Read';
-  } 
-}
+import {
+  myLibrary, saveLibrary, Book, Card, toggleModal,
+  windowOnClick, statusChange, checkStatus, title,
+  author, pages, read, row, closeButton, deleteBook,
+} from './library';
 
 Card.prototype.createCard = (book) => {
-
   const column = document.createElement('section');
   column.className = 'mb-3 col-3';
 
@@ -62,19 +27,16 @@ Card.prototype.createCard = (book) => {
   cardPages.textContent = `${book.pages} pages`;
 
   const bookRead = document.createElement('button');
-  bookRead.className = 'btn btn-secondary';
+  bookRead.className = 'btn btn-secondary mr-3 pr-3';
   bookRead.addEventListener('click', statusChange);
-  if (book.read) {
-    bookRead.textContent = 'Read';
-  } else {
-    bookRead.textContent = 'Not Read';
-  }
+  checkStatus(book, bookRead);
 
   const deleteBtn = document.createElement('button');
   deleteBtn.setAttribute('type', 'button');
-  deleteBtn.className = 'btn btn-danger';
+  deleteBtn.className = 'btn btn-danger ml-2 pl-2 btn-delete';
   deleteBtn.textContent = 'Delete Book';
   deleteBtn.addEventListener('click', deleteBook);
+  deleteBtn.addEventListener('click', toggleModal);
 
   cardBody.appendChild(cardTitle);
   cardBody.appendChild(subTitle);
@@ -84,7 +46,7 @@ Card.prototype.createCard = (book) => {
   card.appendChild(cardBody);
   column.appendChild(card);
   row.appendChild(column);
-}
+};
 
 function resetList() {
   row.innerHTML = '';
@@ -97,7 +59,7 @@ function newBook(bookCard) {
   });
 }
 
-function restoreLocal() {
+function restoreLocal(myLibrary) {
   myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
   if (myLibrary === null) myLibrary = [];
   const bookCard = new Card();
@@ -120,8 +82,10 @@ function addBookToLibrary() {
   cleanInputs();
 }
 
+closeButton.addEventListener('click', toggleModal);
+window.addEventListener('click', windowOnClick);
+
 const btn = document.querySelector('#createBtn');
 btn.addEventListener('click', addBookToLibrary);
 
 restoreLocal();
-
