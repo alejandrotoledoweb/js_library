@@ -1,16 +1,18 @@
 const myLibrary = [];
-const title = document.querySelector("#title");
-const author = document.querySelector("#author");
-const pages = document.querySelector("#pages");
-const read = document.querySelector("#readStatus");
-const row = document.querySelector(".row");
-const modal = document.querySelector(".modal1");
-const closeButton = document.querySelector(".close-button");
+const title = document.querySelector('#title');
+const author = document.querySelector('#author');
+const pages = document.querySelector('#pages');
+const read = document.querySelector('#readStatus');
+const row = document.querySelector('.row');
+const modal = document.querySelector('.modal1');
+const closeButton = document.querySelector('.close-button');
 
-export { title, author, pages, read, row, modal, closeButton, myLibrary };
+export {
+  title, author, pages, read, row, modal, closeButton, myLibrary,
+};
 
 export function saveLibrary() {
-  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+  localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
 }
 
 export function Card(book) {
@@ -35,23 +37,23 @@ export function deleteBook(mybook) {
 }
 
 export function statusChange(status) {
-  if (status.target.textContent === "Read") {
-    status.target.textContent = "Not Read";
+  if (status.target.textContent === 'Read') {
+    status.target.textContent = 'Not Read';
   } else {
-    status.target.textContent = "Read";
+    status.target.textContent = 'Read';
   }
 }
 
 export function checkStatus(book, btn) {
   if (book.read) {
-    btn.textContent = "Read";
+    btn.textContent = 'Read';
   } else {
-    btn.textContent = "Not Read";
+    btn.textContent = 'Not Read';
   }
 }
 
 export function toggleModal() {
-  modal.classList.toggle("show-modal");
+  modal.classList.toggle('show-modal');
 }
 
 export function windowOnClick(event) {
@@ -60,5 +62,5 @@ export function windowOnClick(event) {
   }
 }
 
-closeButton.addEventListener("click", toggleModal);
-window.addEventListener("click", windowOnClick);
+closeButton.addEventListener('click', toggleModal);
+window.addEventListener('click', windowOnClick);
