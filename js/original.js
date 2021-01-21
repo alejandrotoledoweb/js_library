@@ -4,6 +4,8 @@ const author = document.querySelector("#author");
 const pages = document.querySelector("#pages");
 const read = document.querySelector("#readStatus");
 const row = document.querySelector(".row");
+const modal = document.querySelector(".modal1");
+const closeButton = document.querySelector(".close-button");
 
 function saveLibrary() {
   localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
@@ -30,15 +32,36 @@ function deleteBook(mybook) {
   mybook.target.offsetParent.parentElement.remove();
 }
 
-function ConfirmDelete() {
-  alert("Record will be deleted!");
+// function ConfirmDelete() {
+//   alert("Record will be deleted!");
+// }
+
+function toggleModal() {
+  modal.classList.toggle("show-modal");
 }
+
+function windowOnClick(event) {
+  if (event.target === modal) {
+    toggleModal();
+  }
+}
+
+closeButton.addEventListener("click", toggleModal);
+window.addEventListener("click", windowOnClick);
 
 function statusChange(status) {
   if (status.target.textContent === "Read") {
     status.target.textContent = "Not Read";
   } else {
     status.target.textContent = "Read";
+  }
+}
+
+function checkStatus(book, btn) {
+  if (book.read) {
+    btn.textContent = "Read";
+  } else {
+    btn.textContent = "Not Read";
   }
 }
 
@@ -67,18 +90,15 @@ Card.prototype.createCard = (book) => {
   const bookRead = document.createElement("button");
   bookRead.className = "btn btn-secondary";
   bookRead.addEventListener("click", statusChange);
-  if (book.read) {
-    bookRead.textContent = "Read";
-  } else {
-    bookRead.textContent = "Not Read";
-  }
+  checkStatus(book, bookRead);
 
   const deleteBtn = document.createElement("button");
   deleteBtn.setAttribute("type", "button");
   deleteBtn.className = "btn btn-danger";
   deleteBtn.textContent = "Delete Book";
-  deleteBtn.addEventListener("click", ConfirmDelete);
+  // deleteBtn.addEventListener("click", ConfirmDelete);
   deleteBtn.addEventListener("click", deleteBook);
+  deleteBtn.addEventListener("click", toggleModal);
 
   cardBody.appendChild(cardTitle);
   cardBody.appendChild(subTitle);
