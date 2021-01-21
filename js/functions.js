@@ -1,6 +1,4 @@
 const myLibrary = [];
-
-export { myLibrary };
 const title = document.querySelector("#title");
 const author = document.querySelector("#author");
 const pages = document.querySelector("#pages");
@@ -9,7 +7,7 @@ const row = document.querySelector(".row");
 const modal = document.querySelector(".modal1");
 const closeButton = document.querySelector(".close-button");
 
-export { title, author, pages, read, row, modal, closeButton };
+export { title, author, pages, read, row, modal, closeButton, myLibrary };
 
 export function saveLibrary() {
   localStorage.setItem("myLibrary", JSON.stringify(myLibrary));

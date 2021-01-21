@@ -1,4 +1,4 @@
-import { myLibrary, saveLibrary, Book, Card, toggleModal, windowOnClick, statusChange, checkStatus, title, author, pages, read, row, closeButton } from "./functions.js";
+import { myLibrary, saveLibrary, Book, Card, toggleModal, windowOnClick, statusChange, checkStatus, title, author, pages, read, row, closeButton, deleteBook } from "./functions.js";
 
 Card.prototype.createCard = (book) => {
   const column = document.createElement("section");
@@ -31,7 +31,7 @@ Card.prototype.createCard = (book) => {
   deleteBtn.setAttribute("type", "button");
   deleteBtn.className = "btn btn-danger ml-2 pl-2 btn-delete";
   deleteBtn.textContent = "Delete Book";
-  deleteBtn.addEventListener("click", deleteBook());
+  deleteBtn.addEventListener("click", deleteBook);
   deleteBtn.addEventListener("click", toggleModal);
 
   cardBody.appendChild(cardTitle);
