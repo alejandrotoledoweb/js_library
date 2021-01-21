@@ -31,7 +31,6 @@ export function Book(title, author, pages, read) {
 export function deleteBook(mybook) {
   const bookIndex = myLibrary.indexOf(mybook.target);
   myLibrary.splice(bookIndex, 1);
-  console.log(myLibrary);
   saveLibrary();
   mybook.target.offsetParent.parentElement.remove();
 }
