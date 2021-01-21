@@ -13,7 +13,7 @@
 
 ## Live Demo
 
-[Live Demo Link](https://livedemo.com)
+[Live Demo Link](https://alejandrotoledoweb.github.io/js_library/)
 
 ## Getting Started
 
