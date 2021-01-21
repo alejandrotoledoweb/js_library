@@ -1,9 +1,5 @@
 const myLibrary = [];
 
-// var Card = require("./main.js");
-// var Card = new Card();
-// Card.prototype.createCard();
-
 export { myLibrary };
 const title = document.querySelector('#title');
 const author = document.querySelector('#author');
@@ -14,7 +10,7 @@ const modal = document.querySelector('.modal1');
 const closeButton = document.querySelector('.close-button');
 
 export {
-  title, author, pages, read, row,
+  title, author, pages, read, row, modal, closeButton,
 };
 
 export function saveLibrary() {
@@ -61,7 +57,7 @@ export function toggleModal() {
   modal.classList.toggle('show-modal');
 }
 
-function windowOnClick(event) {
+export function windowOnClick(event) {
   if (event.target === modal) {
     toggleModal();
   }
@@ -69,42 +65,3 @@ function windowOnClick(event) {
 
 closeButton.addEventListener('click', toggleModal);
 window.addEventListener('click', windowOnClick);
-
-// function resetList() {
-// row.innerHTML = "";
-// }
-
-// function newBook(bookCard) {
-// resetList();
-// myLibrary.forEach((book) => {
-// bookCard.createCard(book);
-// });
-// }
-
-// function cleanInputs() {
-// title.value = "";
-// author.value = "";
-// pages.value = "";
-// read.checked = false;
-// }
-
-// function addBookToLibrary() {
-// const book = new Book(title.value, author.value, pages.value, read.checked);
-// myLibrary.push(book);
-// saveLibrary();
-// const bookCard = new Card(book);
-// newBook(bookCard);
-// cleanInputs();
-// }
-
-// function restoreLocal() {
-// myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
-// if (myLibrary === null) myLibrary = [];
-// const bookCard = new Card();
-// newBook(bookCard);
-// }
-
-// const btn = document.querySelector("#createBtn");
-// btn.addEventListener("click", addBookToLibrary);
-//
-// restoreLocal();

@@ -1,8 +1,6 @@
 import {
-  deleteBook, statusChange, checkStatus, toggleModal, Card, myLibrary, saveLibrary, Book, title, author, pages, read, row,
-} from './functions';
-
-// const row = document.querySelector(".row");
+  myLibrary, saveLibrary, Book, Card, deleteBook, toggleModal, windowOnClick, statusChange, checkStatus, title, author, pages, read, row, closeButton,
+} from './functions.js';
 
 Card.prototype.createCard = (book) => {
   const column = document.createElement('section');
@@ -35,7 +33,7 @@ Card.prototype.createCard = (book) => {
   deleteBtn.setAttribute('type', 'button');
   deleteBtn.className = 'btn btn-danger ml-2 pl-2 btn-delete';
   deleteBtn.textContent = 'Delete Book';
-  deleteBtn.addEventListener('click', deleteBook());
+  // deleteBtn.addEventListener("click", deleteBook());
   deleteBtn.addEventListener('click', toggleModal);
 
   cardBody.appendChild(cardTitle);
@@ -59,7 +57,7 @@ function newBook(bookCard) {
   });
 }
 
-function restoreLocal() {
+function restoreLocal(myLibrary) {
   myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
   if (myLibrary === null) myLibrary = [];
   const bookCard = new Card();
@@ -82,9 +80,10 @@ function addBookToLibrary() {
   cleanInputs();
 }
 
+closeButton.addEventListener('click', toggleModal);
+window.addEventListener('click', windowOnClick);
+
 const btn = document.querySelector('#createBtn');
 btn.addEventListener('click', addBookToLibrary);
 
 restoreLocal();
-
-// module.exports = Card;
