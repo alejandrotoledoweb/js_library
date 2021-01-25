@@ -1,6 +1,15 @@
 import {
-  myLibrary, saveLibrary, Book, Card, toggleModal, windowOnClick, statusChange, checkStatus, title, author, pages, read, row, closeButton, deleteBook,
+  myLibrary, saveLibrary, toggleModal, windowOnClick, statusChange, checkStatus, title, author, pages, read, row, closeButton, deleteBook,
 } from './library.js';
+
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
+}
 
 function createCard(book) {
   const column = document.createElement('section');
@@ -25,7 +34,7 @@ function createCard(book) {
   cardPages.textContent = `${book.pages} pages`;
 
   const bookRead = document.createElement('button');
-  bookRead.className = 'btn btn-secondary mr-3 pr-3';
+  bookRead.className = 'btn btn-secondary mr-3 pr-3 ml-3';
   bookRead.addEventListener('click', statusChange);
   checkStatus(book, bookRead);
 
@@ -44,24 +53,23 @@ function createCard(book) {
   card.appendChild(cardBody);
   column.appendChild(card);
   row.appendChild(column);
-};
+}
 
 function resetList() {
   row.innerHTML = '';
 }
 
-function newBook(bookCard) {
+function newBook() {
   resetList();
   myLibrary.forEach((book) => {
-    bookCard.createCard(book);
+    createCard(book);
   });
 }
 
 function restoreLocal(myLibrary) {
   myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
   if (myLibrary === null) myLibrary = [];
-  const bookCard = new Card();
-  newBook(bookCard);
+  newBook();
 }
 
 function cleanInputs() {
@@ -75,8 +83,7 @@ function addBookToLibrary() {
   const book = new Book(title.value, author.value, pages.value, read.checked);
   myLibrary.push(book);
   saveLibrary();
-  const bookCard = new Card(book);
-  newBook(bookCard);
+  newBook();
   cleanInputs();
 }
 
