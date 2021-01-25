@@ -2,7 +2,7 @@ import {
   myLibrary, saveLibrary, Book, Card, toggleModal, windowOnClick, statusChange, checkStatus, title, author, pages, read, row, closeButton, deleteBook,
 } from './library.js';
 
-Card.prototype.createCard = (book) => {
+function createCard(book) {
   const column = document.createElement('section');
   column.className = 'mb-3 col-3';
 

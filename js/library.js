@@ -15,18 +15,27 @@ export function saveLibrary() {
   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
 }
 
-export function Card(book) {
-  this.book = book;
+export class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
 }
+
+// export function Card(book) {
+//   this.book = book;
+// }
 
 // the same attributes from the form in the html file
 
-export function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-}
+// export function Book(title, author, pages, read) {
+//   this.title = title;
+//   this.author = author;
+//   this.pages = pages;
+//   this.read = read;
+// }
 
 export function deleteBook(mybook) {
   const bookIndex = myLibrary.indexOf(mybook.target);
